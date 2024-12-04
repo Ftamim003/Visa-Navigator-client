@@ -9,19 +9,20 @@ import {
 import Main from './Components/Main.jsx';
 import Home from './Components/Home.jsx';
 import AllVisas from './Components/AllVisas.jsx';
+import AuthProvider from './Provider/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    children:[
+    children: [
       {
-        path:"/",
-        element:<Home></Home>
+        path: "/",
+        element: <Home></Home>
       },
       {
-        path:'allvisa',
-        element:<AllVisas></AllVisas>
+        path: 'allvisa',
+        element: <AllVisas></AllVisas>
       }
 
     ]
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

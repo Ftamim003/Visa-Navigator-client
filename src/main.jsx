@@ -10,6 +10,8 @@ import Main from './Components/Main.jsx';
 import Home from './Components/Home.jsx';
 import AllVisas from './Components/AllVisas.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
+import AuthLayouts from './Components/Layouts/AuthLayouts.jsx';
+import Login from './Components/Pages/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,22 @@ const router = createBrowserRouter([
       }
 
     ]
+    
   },
+
+  {
+    path:"auth",
+    element:<AuthLayouts></AuthLayouts>,
+    children:[
+      {
+        path:'/auth/login',
+        element:<Login></Login>
+      },
+      {
+        
+      }
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

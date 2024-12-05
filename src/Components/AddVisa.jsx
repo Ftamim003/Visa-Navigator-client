@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Swal from 'sweetalert2';
+import Navbar from './Navbar';
 
 const AddVisa = () => {
 
@@ -54,6 +55,8 @@ const AddVisa = () => {
           icon: 'success',
           confirmButtonText: 'Cool',
         });
+        
+        form.reset(); 
       }
     })
     .catch(err => {
@@ -68,7 +71,10 @@ const AddVisa = () => {
   };
 
   return (
+    <>
+    <div><Navbar></Navbar></div>
     <div className="bg-[#F4F3F0] p-10">
+      
       <h2 className="text-3xl font-bold mb-5">Add Visa</h2>
 
       <form onSubmit={handleAddVisa}>
@@ -216,6 +222,7 @@ const AddVisa = () => {
         />
       </form>
     </div>
+    </>
   );
 };
 

@@ -25,16 +25,28 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: async ()=> {
+
+          const response = await fetch("http://localhost:5000/recentVisa");
+          return response.json();
+        }
       },
       {
         path: '/allVisa',
         element: <AllVisas></AllVisas>
-      }
+      },
 
+      
     ]
     
   },
+  {
+    path:"/addVisa",
+    element:<AddVisa></AddVisa>
+
+  },
+
   {
 
     path:"/myVisa",
@@ -45,11 +57,7 @@ const router = createBrowserRouter([
     element:<MyApplications></MyApplications>
 
   },
-  {
-    path:"/addVisa",
-    element:<AddVisa></AddVisa>
-
-  },
+ 
 
   {
     path:"auth",

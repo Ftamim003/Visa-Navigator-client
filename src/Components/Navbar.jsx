@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 const Navbar = () => {
-    const {user, logOut}=useContext(AuthContext)
+    const {user,  logOut}=useContext(AuthContext)
     return (
         <div>
            <div className="">
@@ -17,15 +17,15 @@ const Navbar = () => {
                                     tabIndex="0"
                                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-28 p-2 shadow">
                                     <li><NavLink to='/'> Home </NavLink></li>
-                                    <li><NavLink to='/allvisa'>All Visa </NavLink></li>
+                                    <li><NavLink to='/allVisa'>All Visa </NavLink></li>
                                     <li> <NavLink to="/tutorials">Tutorials</NavLink></li>
                                     {/* <li><NavLink to='/about'> About Us  </NavLink></li> */}
                                     
-                                    {/* {
+                                    {
                                         user && <>
                                             <li><NavLink to='/profile'> Profile  </NavLink></li>
                                         </>
-                                    } */}
+                                    }
                                 </ul>
                             </div>
                             <div className="flex gap-3 items-center">
@@ -36,14 +36,30 @@ const Navbar = () => {
                         <div className="navbar-center hidden md:flex">
                             <ul className="menu menu-horizontal px-1 text-lg">
                                 <li ><NavLink to='/'> Home </NavLink></li>
-                                <li><NavLink to='/allvisa'>All Visa </NavLink></li>
-                                <li> <NavLink to="/tutorials">Tutorials</NavLink></li>
+                                <li><NavLink to='/allVisa'>All Visa </NavLink></li>
+                                
                                 {/* <li><NavLink to='/about'> About Us  </NavLink></li> */}
                                 
                                 
+                               
+
                                 {
                                     user && <>
-                                        <li><NavLink to='/profile'> Profile  </NavLink></li>
+                                    
+                                     <li><NavLink to='/addVisa'>Add Visa</NavLink></li>
+                                    </>
+                                }
+
+                              {
+                                    user && <>
+                                        <li><NavLink to='/myVisa'> My Visa  </NavLink></li>
+                                    </>
+                                }
+
+                                 {
+                                    user && <>
+                                    
+                                     <li><NavLink to='/myApplication'>My Application</NavLink></li>
                                     </>
                                 }
                             </ul>

@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
 
-    const {userLogin,setUser}=useContext(AuthContext);
+    const {userLogin,setUser,googleSignIn}=useContext(AuthContext);
     const [error, setError] = useState({});
     const [email, setEmail] = useState("")
 
@@ -22,12 +22,21 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
-                toast.success(`Welcome, ${user.displayName || "User"}!`);
-                navigate(location?.state ? location.state : "/")
+                //toast.success(`Welcome, ${user.displayName || "User"}!`);
+                const redirectPath = location.state?.pathname || "/";
+                navigate(redirectPath ,{ replace: true });
             })
             .catch((err) => {
                 setError({ ...error, login: err.code })
             });
+    }
+
+    const handleGoogleSignIn=()=>{
+        googleSignIn()
+        .then(()=>{
+            const redirectPath = location.state?.pathname || "/";
+            navigate(redirectPath, { replace: true });
+        })
     }
 
     return (
@@ -76,11 +85,11 @@ const Login = () => {
                 </div>
             </form>
             <p className="text-center font-semibold"> Dont have an account? <Link className="text-red-500" to='/auth/register'>Register</Link></p>
-            {/* <div className="*:w-full mt-5">
+            <div className="*:w-full mt-5">
                 <button onClick={handleGoogleSignIn} className="btn text-blue-600">
                     <FaGoogle></FaGoogle> Login with Google
                 </button>
-            </div> */}
+            </div>
         </div>
 
 

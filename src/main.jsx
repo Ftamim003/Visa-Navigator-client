@@ -12,6 +12,11 @@ import AllVisas from './Components/AllVisas.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
 import AuthLayouts from './Components/Layouts/AuthLayouts.jsx';
 import Login from './Components/Pages/Login.jsx';
+import Register from './Components/Pages/Register.jsx';
+
+import MyApplications from './Components/MyApplications.jsx';
+import AddVisa from './Components/AddVisa.jsx';
+import MyVisa from './Components/MyVisa.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,12 +28,27 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: 'allvisa',
+        path: '/allVisa',
         element: <AllVisas></AllVisas>
       }
 
     ]
     
+  },
+  {
+
+    path:"/myVisa",
+    element:<MyVisa></MyVisa>
+  },
+  {
+    path:"/myApplication",
+    element:<MyApplications></MyApplications>
+
+  },
+  {
+    path:"/addVisa",
+    element:<AddVisa></AddVisa>
+
   },
 
   {
@@ -40,7 +60,8 @@ const router = createBrowserRouter([
         element:<Login></Login>
       },
       {
-        
+        path:'/auth/register',
+        element:<Register></Register>
       }
     ]
   }

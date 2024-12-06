@@ -1,15 +1,19 @@
 
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import Navbar from './Navbar';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const AddVisa = () => {
 
+  const {user}=useContext(AuthContext);
+  
   // Handle form submission
   const handleAddVisa = (event) => {
     event.preventDefault(); // Prevent default form submission
 
+    const email=user.email;
     const form = event.target;
     const countryImage = form.countryImage.value;
     const countryName = form.countryName.value;
@@ -36,6 +40,7 @@ const AddVisa = () => {
       fee,
       validity,
       applicationMethod,
+      email
     };
 
     // Send the data to the backend (MongoDB)

@@ -19,6 +19,7 @@ import AddVisa from './Components/AddVisa.jsx';
 import MyVisa from './Components/MyVisa.jsx';
 import VisaDetails from './Components/VisaDetails.jsx';
 import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
+import NotFound from './Components/NotFound.jsx';
 
 const router = createBrowserRouter([
   {
@@ -80,7 +81,12 @@ const router = createBrowserRouter([
         element:<Register></Register>
       }
     ]
-  }
+  },
+
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(

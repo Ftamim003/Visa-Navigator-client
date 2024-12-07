@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-
+import Swal from "sweetalert2";
 
 const VisaDetails = () => {
     const singleVisaCard=useLoaderData();
@@ -42,13 +42,31 @@ const VisaDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("Application submitted successfully!");
-          setShowModal(false);
-        } else {
-          alert("Failed to submit the application.");
+            Swal.fire({
+              icon: "success",
+              title: "Application Submitted",
+              text: "Your visa application was submitted successfully!",
+              confirmButtonColor: "#3085d6",
+            });
+            setShowModal(false);
+        }  else {
+            Swal.fire({
+              icon: "error",
+              title: "Submission Failed",
+              text: "Something went wrong. Please try again later.",
+              confirmButtonColor: "#d33",
+            });
         }
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "An unexpected error occurred.",
+          confirmButtonColor: "#d33",
+        });
+        console.error("Error:", error);
+      });
   };
 
 

@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 import Swal from "sweetalert2";
 import Navbar from "./Navbar";
+import Footer from "./Footer/Footer";
 
 const MyApplications = () => {
     const { user } = useContext(AuthContext);
@@ -60,7 +61,7 @@ const MyApplications = () => {
         <>
 
              <Navbar></Navbar>
-            <div className="p-8">
+            <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
                 <h2 className="text-3xl font-bold mb-6">My Visa Applications</h2>
                 {applications.length === 0 ? (
                     <p>No visa applications found.</p>
@@ -113,7 +114,7 @@ const MyApplications = () => {
                 )}
             </div>
 
-
+         <Footer></Footer>
         </>
     );
 };

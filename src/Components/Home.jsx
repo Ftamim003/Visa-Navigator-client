@@ -1,13 +1,14 @@
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Footer from "./Footer/Footer";
+import Navbar from "./Navbar";
 
 const Home = () => {
     const visaData = useLoaderData();
     const navigate = useNavigate();
     return (
         <>
-
-            <div>
+           <Navbar></Navbar>
+            <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto ">
 
                 <section className="slider">
                     <div className="carousel w-full">
@@ -52,7 +53,7 @@ const Home = () => {
 
 
 
-                <div className="p-8 bg-gray-100">
+                <div className="p-8 bg-gray-100 my-5 rounded-lg">
                     <h2 className="text-3xl font-bold text-center mb-6">Latest Visas</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {visaData.map((visa) => (
@@ -103,7 +104,7 @@ const Home = () => {
 
             {/* section1 */}
 
-            <div className="p-8 bg-blue-100">
+            <div className="p-8 bg-blue-100 w-11/12 mx-auto my-5 rounded-lg">
                 <h2 className="text-3xl font-bold text-center mb-6">Top Visa Destinations</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="relative rounded-lg overflow-hidden shadow-lg">
@@ -144,7 +145,7 @@ const Home = () => {
 
             {/* section2 */}
 
-            <div className="p-8 bg-gray-100">
+            <div className="p-8 bg-gray-100 w-11/12 mx-auto my-5 rounded-lg">
                 <h2 className="text-3xl font-bold text-center mb-6">What Our Users Say</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="p-4 bg-white rounded-lg shadow-md">

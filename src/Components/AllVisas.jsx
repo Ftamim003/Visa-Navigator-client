@@ -1,10 +1,14 @@
 import { Link, useLoaderData } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer/Footer";
 
 
 const AllVisas = () => {
     const allVisaData = useLoaderData();
     return (
-        <div>
+       <>
+       <Navbar></Navbar>
+       <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
             <div className="p-8 bg-gray-100">
                 <h2 className="text-3xl font-bold text-center mb-6">All Visas</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -40,6 +44,8 @@ const AllVisas = () => {
 
 
         </div>
+       
+       </>
     );
 };
 

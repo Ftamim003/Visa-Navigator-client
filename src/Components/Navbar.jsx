@@ -1,11 +1,15 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 const Navbar = () => {
-    const {user,  logOut}=useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    const location = useLocation();
+    const handleLogout = () => {
+        logOut(); // Clear user state and perform any additional logout logic
+    };
     return (
-        <div>
-           <div className="">
+        <div >
+            <div className="">
                 <nav className="flex items-center">
                     <div className="navbar ">
                         <div className="navbar-start">
@@ -20,7 +24,7 @@ const Navbar = () => {
                                     <li><NavLink to='/allVisa'>All Visa </NavLink></li>
                                     <li> <NavLink to="/tutorials">Tutorials</NavLink></li>
                                     {/* <li><NavLink to='/about'> About Us  </NavLink></li> */}
-                                    
+
                                     {
                                         user && <>
                                             <li><NavLink to='/profile'> Profile  </NavLink></li>
@@ -37,44 +41,72 @@ const Navbar = () => {
                             <ul className="menu menu-horizontal px-1 text-lg">
                                 <li ><NavLink to='/'> Home </NavLink></li>
                                 <li><NavLink to='/allVisa'>All Visa </NavLink></li>
-                                
+
                                 {/* <li><NavLink to='/about'> About Us  </NavLink></li> */}
-                                
-                                
-                               
+
+
+
 
                                 {
                                     user && <>
-                                    
-                                     <li><NavLink to='/addVisa'>Add Visa</NavLink></li>
+
+                                        <li><NavLink to='/addVisa'>Add Visa</NavLink></li>
                                     </>
                                 }
 
-                              {
+                                {
                                     user && <>
                                         <li><NavLink to='/myVisa'> My Visa  </NavLink></li>
                                     </>
                                 }
 
-                                 {
+                                {
                                     user && <>
-                                    
-                                     <li><NavLink to='/myApplication'>My Application</NavLink></li>
+
+                                        <li><NavLink to='/myApplication'>My Application</NavLink></li>
                                     </>
                                 }
                             </ul>
                         </div>
                         <div className="navbar-end flex gap-7">
-                            {
-                                user && user?.email ? <div className="flex items-center gap-1">
-                                    <p><span className="text-sm">Welcome,</span> {user.displayName}</p>
-                                    <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt="" />
-
-                                </div> : ""
-                            }
-                            {
-                                user && user?.email ? <button onClick={logOut} className="btn btn-primary hover:bg-blue-600 transition-colors duration-300">Log-out</button> : <Link to='/auth/login' className="btn btn-primary hover:bg-blue-600 transition-colors duration-300">Login</Link>
-                            }
+                            {!user ? (
+                                <>
+                                    <Link
+                                        to="/auth/login"
+                                        className="btn btn-primary hover:bg-blue-600 transition-colors duration-300"
+                                    >
+                                        Login
+                                    </Link>
+                                    <Link
+                                        to="/auth/register"
+                                        className="btn btn-secondary hover:bg-blue-500 transition-colors duration-300"
+                                    >
+                                        Register
+                                    </Link>
+                                </>
+                            ) : (
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img src={user.photoURL} alt="User Avatar" />
+                                        </div>
+                                    </label>
+                                    <ul
+                                        tabIndex={0}
+                                        className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-[1] "
+                                    >
+                                        <li>
+                                            <span className="font-bold">Hello, {user.displayName}</span>
+                                        </li>
+                                        
+                                        <li>
+                                            <button onClick={handleLogout} className="text-red-600">
+                                                Logout
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
 
                         </div>
                     </div>

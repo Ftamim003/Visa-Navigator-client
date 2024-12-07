@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate,  } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
 
@@ -23,8 +23,8 @@ const Login = () => {
                 const user = result.user
                 setUser(user)
                 //toast.success(`Welcome, ${user.displayName || "User"}!`);
-                const redirectPath = location.state?.pathname || "/";
-                navigate(redirectPath ,{ replace: true });
+                
+               navigate(location?.state ? location.state.from : "/")
             })
             .catch((err) => {
                 setError({ ...error, login: err.code })
@@ -34,8 +34,7 @@ const Login = () => {
     const handleGoogleSignIn=()=>{
         googleSignIn()
         .then(()=>{
-            const redirectPath = location.state?.pathname || "/";
-            navigate(redirectPath, { replace: true });
+            navigate(location?.state ? location.state.from : "/");
         })
     }
 

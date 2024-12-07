@@ -35,22 +35,22 @@ const router = createBrowserRouter([
           return response.json();
         }
       },
-      {
-        path: '/allVisa',
-        element: <AllVisas></AllVisas>,
-        loader: ()=> fetch("http://localhost:5000/visa")
-      },
-
-      
+     
     ]
     
+  },
+  {
+    
+      path: "/allVisa",
+      element: <AllVisas></AllVisas>,
+      loader: ()=> fetch("http://localhost:5000/visa")
   },
   {
     path:"/addVisa",
     element:<PrivateRoute><AddVisa></AddVisa></PrivateRoute>
 
   },
-
+   
   {
 
     path:"/myVisa",

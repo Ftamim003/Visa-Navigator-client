@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import Navbar from './Navbar';
 import { AuthContext } from '../Provider/AuthProvider';
+import Footer from './Footer/Footer';
 
 const AddVisa = () => {
 
@@ -78,7 +79,7 @@ const AddVisa = () => {
   return (
     <>
     <div><Navbar></Navbar></div>
-    <div className="bg-[#F4F3F0] p-10">
+    <div className="bg-[#F4F3F0] p-10 min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
       
       <h2 className="text-3xl font-bold mb-5">Add Visa</h2>
 
@@ -227,6 +228,8 @@ const AddVisa = () => {
         />
       </form>
     </div>
+
+    <Footer></Footer>
     </>
   );
 };

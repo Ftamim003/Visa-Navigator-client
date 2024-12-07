@@ -1,18 +1,52 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer/Footer";
+import { useState } from "react";
 
 
 const AllVisas = () => {
     const allVisaData = useLoaderData();
+    const [filteredVisas, setFilteredVisas] = useState(allVisaData);
+    const [selectedVisaType, setSelectedVisaType] = useState("All");
+
+
+ 
+    const handleFilterChange = (event) => {
+        const visaType = event.target.value;
+        setSelectedVisaType(visaType);
+
+        if (visaType === "All") {
+            setFilteredVisas(allVisaData); 
+        } else {
+            const filtered = allVisaData.filter((visa) => visa.visaType === visaType);
+            setFilteredVisas(filtered);
+        }
+    };
+
+
+    const visaTypes = ["All", ...new Set(allVisaData.map((visa) => visa.visaType))];
+
     return (
        <>
        <Navbar></Navbar>
        <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
             <div className="p-8 bg-gray-100">
                 <h2 className="text-3xl font-bold text-center mb-6">All Visas</h2>
+                <div className="mb-6 flex justify-center">
+                        <select
+                            className="select select-bordered w-full max-w-xs"
+                            value={selectedVisaType}
+                            onChange={handleFilterChange}
+                        >
+                            {visaTypes.map((type, index) => (
+                                <option key={index} value={type}>
+                                    {type}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {allVisaData.map((visa) => (
+                    {filteredVisas.map((visa) => (
                         <div
                             key={visa._id}
                             className="border p-4 rounded-lg bg-white shadow-md hover:shadow-lg"

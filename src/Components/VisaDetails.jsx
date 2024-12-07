@@ -15,6 +15,12 @@ const VisaDetails = () => {
     lastName: "",
     appliedDate: new Date().toISOString().slice(0, 10), // Current date
     fee: singleVisaCard.fee,
+    countryName:singleVisaCard.countryName,
+    countryImage:singleVisaCard.countryImage,
+    visaType:singleVisaCard.visaType,
+    processingTime:singleVisaCard.processingTime,
+    validity:singleVisaCard.validity,
+    applicationMethod:singleVisaCard.applicationMethod
     })
 
 

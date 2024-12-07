@@ -56,7 +56,8 @@ const router = createBrowserRouter([
   },
   {
     path:"/myApplication",
-    element:<MyApplications></MyApplications>
+    element:<MyApplications></MyApplications>,
+    
 
   },
  {

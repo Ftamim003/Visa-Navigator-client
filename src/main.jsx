@@ -87,6 +87,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound></NotFound>,
   },
+  
 ]);
 
 createRoot(document.getElementById('root')).render(

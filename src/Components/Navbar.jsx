@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import Lottie from "lottie-react";
+import animationData from "../Animation - 1733596939443.json";
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const location = useLocation();
@@ -22,19 +24,43 @@ const Navbar = () => {
                                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-28 p-2 shadow">
                                     <li><NavLink to='/'> Home </NavLink></li>
                                     <li><NavLink to='/allVisa'>All Visa </NavLink></li>
-                                    <li> <NavLink to="/tutorials">Tutorials</NavLink></li>
                                     {/* <li><NavLink to='/about'> About Us  </NavLink></li> */}
+
+
+
 
                                     {
                                         user && <>
-                                            <li><NavLink to='/profile'> Profile  </NavLink></li>
+
+                                            <li><NavLink to='/addVisa'>Add Visa</NavLink></li>
                                         </>
                                     }
+
+                                    {
+                                        user && <>
+                                            <li><NavLink to='/myVisa'> My Visa  </NavLink></li>
+                                        </>
+                                    }
+
+                                    {
+                                        user && <>
+
+                                            <li><NavLink to='/myApplication'>My Application</NavLink></li>
+                                        </>
+                                    }
+
+
                                 </ul>
                             </div>
-                            <div className="flex gap-3 items-center">
+                            <div className="flex items-center w-72">
 
-                                <h1 className="font-bold text-2xl text-blue-600 "><NavLink to='/'>Visa Consultant</NavLink></h1>
+                                <h1 className="font-bold text-2xl text-orange-600 hidden md:block"><NavLink to='/'>
+                                Skyline Visas  </NavLink> </h1>
+                                <div className="text-center mt-5 ">
+
+                                    <Lottie animationData={animationData} loop={true} className=" w-12" />
+                                </div>
+
                             </div>
                         </div>
                         <div className="navbar-center hidden md:flex">
@@ -98,7 +124,7 @@ const Navbar = () => {
                                         <li>
                                             <span className="font-bold">Hello, {user.displayName}</span>
                                         </li>
-                                        
+
                                         <li>
                                             <button onClick={handleLogout} className="text-red-600">
                                                 Logout

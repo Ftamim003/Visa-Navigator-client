@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Global styles */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Dark Mode Styles */
+  .dark {
+    background-color: #121212;
+    color: white;
+  }
+  
+  .dark .bg-gray-100 {
+    background-color: #2D2D2D;
+  }
+  
+  .dark .text-gray-600 {
+    color: #B0B0B0;
+  }
+  
+  .dark .bg-blue-100 {
+    background-color: #333;
+  }
+  
+  .dark .bg-blue-500 {
+    background-color: #3B82F6;
+  }
+  
+  .dark .hover\:bg-blue-600:hover {
+    background-color: #2563EB;
+  }
+  

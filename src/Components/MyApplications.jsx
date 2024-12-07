@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-
 import Swal from "sweetalert2";
 import Navbar from "./Navbar";
 import Footer from "./Footer/Footer";
@@ -10,8 +9,9 @@ const MyApplications = () => {
     const [applications, setApplications] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const [search, setSearch] = useState("");
 
-
+    // Fetch all applications for the current user
     useEffect(() => {
         if (user?.email) {
             fetch(`http://localhost:5000/apply?email=${user.email}`)
@@ -24,7 +24,21 @@ const MyApplications = () => {
         }
     }, [user]);
 
-
+    // Fetch filtered applications for the current user based on the search query
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/country?email=${user.email}&search=${search}`);
+                const data = await response.json();
+                setApplications(Array.isArray(data) ? data : []);
+            } catch (error) {
+                console.error("Error fetching applications:", error);
+                setApplications([]);
+            }
+        };
+    
+        fetchData();
+    }, [search, user.email]);
 
     const handleCancel = (id) => {
         Swal.fire({
@@ -59,11 +73,22 @@ const MyApplications = () => {
 
     return (
         <>
-
-             <Navbar></Navbar>
+            <Navbar />
             <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
                 <h2 className="text-3xl font-bold mb-6">My Visa Applications</h2>
-                {applications.length === 0 ? (
+
+                {/* Search Input Field */}
+                <div className="mb-6">
+                    <input
+                        type="text"
+                        placeholder="Search by country name"
+                        className="border p-2 rounded-lg w-full md:w-1/2"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                </div>
+
+                {Array.isArray(applications) && applications.length === 0 ? (
                     <p>No visa applications found.</p>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -113,8 +138,7 @@ const MyApplications = () => {
                     </div>
                 )}
             </div>
-
-         <Footer></Footer>
+            <Footer />
         </>
     );
 };

@@ -86,7 +86,7 @@ const router = createBrowserRouter([
 
   {
     path: "*",
-    element: <NotFound />
+    element: <div className='text-red-600 text-5xl text-center mt-12'>Ooops Page Not Found!!!</div>
   }
 
 ]);

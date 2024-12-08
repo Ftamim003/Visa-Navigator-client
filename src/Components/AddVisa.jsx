@@ -45,7 +45,7 @@ const AddVisa = () => {
     };
 
     // Send the data to the backend (MongoDB)
-    fetch('http://localhost:5000/visa', {
+    fetch('https://visa-navigator-server.vercel.app/visa', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,9 +77,11 @@ const AddVisa = () => {
   };
 
   return (
+    
     <>
-    <div><Navbar></Navbar></div>
-    <div className="bg-[#F4F3F0] p-10 min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
+      <div className="bg-gradient-to-r from-blue-100 to-orange-100 ">
+      <div><Navbar></Navbar></div>
+    <div className="bg-[#F4F3F0] p-10 min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto rounded-md">
       
       <h2 className="text-3xl font-bold mb-5">Add Visa</h2>
 
@@ -228,6 +230,7 @@ const AddVisa = () => {
         />
       </form>
     </div>
+      </div>
 
     <Footer></Footer>
     </>

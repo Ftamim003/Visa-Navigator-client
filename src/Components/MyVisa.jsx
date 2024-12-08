@@ -13,7 +13,7 @@ const MyVisa = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/myVisas?email=${user.email}`)
+            fetch(`https://visa-navigator-server.vercel.app/myVisas?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => setVisas(data))
                 .catch(error => console.error("Error fetching visas:", error));
@@ -34,7 +34,7 @@ const MyVisa = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/visa/${id}`, {
+                    fetch(`https://visa-navigator-server.vercel.app/visa/${id}`, {
                         method: "DELETE",
                     })
                         .then((res) => res.json())
@@ -53,7 +53,7 @@ const MyVisa = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:5000/visa`, {
+        fetch(`https://visa-navigator-server.vercel.app/visa`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(selectedVisa),
@@ -76,7 +76,8 @@ const MyVisa = () => {
         <>
 
             <Navbar></Navbar>
-            <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
+           <div className="bg-gradient-to-r from-blue-100 to-orange-100">
+           <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto p-3">
                 <h2 className="text-3xl font-bold mb-6">My Added Visas</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {visas.map((visa) => (
@@ -179,6 +180,7 @@ const MyVisa = () => {
                     </div>
                 )}
             </div>
+           </div>
 
               <Footer></Footer>
 

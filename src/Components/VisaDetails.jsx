@@ -33,7 +33,7 @@ const VisaDetails = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:5000/apply", {
+        fetch("https://visa-navigator-server.vercel.app/apply", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

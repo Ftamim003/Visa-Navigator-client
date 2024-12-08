@@ -25,12 +25,14 @@ const AllVisas = () => {
 
 
     const visaTypes = ["All", ...new Set(allVisaData.map((visa) => visa.visaType))];
-
+   
     return (
        <>
        <Navbar></Navbar>
+       <div className=" bg-gradient-to-r from-blue-100 to-orange-100">
        <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
-            <div className="p-8 bg-gray-100">
+            <div className="">
+            <div className="p-8 ">
                 <h2 className="text-3xl font-bold text-center mb-6">All Visas</h2>
                 <div className="mb-6 flex justify-center">
                         <select
@@ -49,7 +51,7 @@ const AllVisas = () => {
                     {filteredVisas.map((visa) => (
                         <div
                             key={visa._id}
-                            className="border p-4 rounded-lg bg-white shadow-md hover:shadow-lg"
+                            className="border border-blue-300 rounded-lg bg-gradient-to-r from-blue-100 to-orange-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-5"
                         >
                             <img
                                 src={visa.countryImage}
@@ -78,7 +80,9 @@ const AllVisas = () => {
 
 
         </div>
-       
+            </div>
+       </div>
+       <Footer></Footer>
        </>
     );
 };

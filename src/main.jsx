@@ -29,56 +29,56 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: async ()=> {
+        loader: async () => {
 
-          const response = await fetch("http://localhost:5000/recentVisa");
+          const response = await fetch("https://visa-navigator-server.vercel.app/recentVisa");
           return response.json();
         }
       },
-     
+
     ]
-    
-  },
-  {
-    
-      path: "/allVisa",
-      element: <AllVisas></AllVisas>,
-      loader: ()=> fetch("http://localhost:5000/visa")
-  },
-  {
-    path:"/addVisa",
-    element:<PrivateRoute><AddVisa></AddVisa></PrivateRoute>
 
   },
-   
   {
 
-    path:"/myVisa",
-    element:<PrivateRoute><MyVisa></MyVisa></PrivateRoute>
+    path: "/allVisa",
+    element: <AllVisas></AllVisas>,
+    loader: () => fetch("https://visa-navigator-server.vercel.app/visa")
   },
   {
-    path:"/myApplication",
-    element:<PrivateRoute><MyApplications></MyApplications></PrivateRoute>,
-    
+    path: "/addVisa",
+    element: <PrivateRoute><AddVisa></AddVisa></PrivateRoute>
 
   },
- {
-  path:"/visaDetails/:id",
-  element:<PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
-  loader:({params})=> fetch(`http://localhost:5000/visa/${params.id}`)
- },
 
   {
-    path:"auth",
-    element:<AuthLayouts></AuthLayouts>,
-    children:[
+
+    path: "/myVisa",
+    element: <PrivateRoute><MyVisa></MyVisa></PrivateRoute>
+  },
+  {
+    path: "/myApplication",
+    element: <PrivateRoute><MyApplications></MyApplications></PrivateRoute>,
+
+
+  },
+  {
+    path: "/visaDetails/:id",
+    element: <PrivateRoute><VisaDetails></VisaDetails></PrivateRoute>,
+    loader: ({ params }) => fetch(`https://visa-navigator-server.vercel.app/visa/${params.id}`)
+  },
+
+  {
+    path: "auth",
+    element: <AuthLayouts></AuthLayouts>,
+    children: [
       {
-        path:'/auth/login',
-        element:<Login></Login>
+        path: '/auth/login',
+        element: <Login></Login>
       },
       {
-        path:'/auth/register',
-        element:<Register></Register>
+        path: '/auth/register',
+        element: <Register></Register>
       }
     ]
   },
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound></NotFound>,
   },
-  
+
 ]);
 
 createRoot(document.getElementById('root')).render(

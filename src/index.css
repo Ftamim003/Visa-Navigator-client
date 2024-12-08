@@ -11,7 +11,7 @@ body {
   /* Dark Mode Styles */
   .dark {
     background-color: #121212;
-    color: white;
+    color: orange;
   }
   
   .dark .bg-gray-100 {

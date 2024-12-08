@@ -1,17 +1,25 @@
 import { useContext } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Lottie from "lottie-react";
 import animationData from "../Animation - 1733596939443.json";
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user,setUser, logOut } = useContext(AuthContext)
     const location = useLocation();
-    const handleLogout = () => {
-        logOut(); // Clear user state and perform any additional logout logic
+    
+    
+    const handleLogout = async () => {
+        try {
+            await logOut();
+            setUser(null); // Clear user state explicitly
+           // Redirect to login page after logout
+        } catch (error) {
+            console.error("Logout failed", error);
+        }
     };
     return (
         <div >
-            <div className="">
+            <div className="bg-gradient-to-r from-blue-100 to-orange-100">
                 <nav className="flex items-center">
                     <div className="navbar ">
                         <div className="navbar-start">
@@ -99,13 +107,13 @@ const Navbar = () => {
                                 <>
                                     <Link
                                         to="/auth/login"
-                                        className="btn btn-primary hover:bg-blue-600 transition-colors duration-300"
+                                        className="btn btn-primary hover:bg-green-600 transition-colors duration-300 mr-6"
                                     >
                                         Login
                                     </Link>
                                     <Link
                                         to="/auth/register"
-                                        className="btn btn-secondary hover:bg-blue-500 transition-colors duration-300"
+                                        className="btn bg-orange-400 hover:bg-blue-500 transition-colors duration-300"
                                     >
                                         Register
                                     </Link>

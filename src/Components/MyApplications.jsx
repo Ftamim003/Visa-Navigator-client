@@ -14,7 +14,7 @@ const MyApplications = () => {
     // Fetch all applications for the current user
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/apply?email=${user.email}`)
+            fetch(`https://visa-navigator-server.vercel.app/apply?email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setApplications(data);
@@ -28,7 +28,7 @@ const MyApplications = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/country?email=${user.email}&search=${search}`);
+                const response = await fetch(`https://visa-navigator-server.vercel.app/country?email=${user.email}&search=${search}`);
                 const data = await response.json();
                 setApplications(Array.isArray(data) ? data : []);
             } catch (error) {
@@ -51,7 +51,7 @@ const MyApplications = () => {
             confirmButtonText: "Yes, cancel it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/apply/${id}`, {
+                fetch(`https://visa-navigator-server.vercel.app/apply/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
@@ -74,7 +74,8 @@ const MyApplications = () => {
     return (
         <>
             <Navbar />
-            <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
+           <div className="bg-gradient-to-r from-blue-100 to-orange-100 ">
+           <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
                 <h2 className="text-3xl font-bold mb-6">My Visa Applications</h2>
 
                 {/* Search Input Field */}
@@ -91,7 +92,7 @@ const MyApplications = () => {
                 {Array.isArray(applications) && applications.length === 0 ? (
                     <p>No visa applications found.</p>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-3">
                         {applications.map((app) => (
                             <div
                                 key={app._id}
@@ -138,6 +139,7 @@ const MyApplications = () => {
                     </div>
                 )}
             </div>
+           </div>
             <Footer />
         </>
     );

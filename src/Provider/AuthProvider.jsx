@@ -3,6 +3,8 @@ import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
 
 
+
+
 export const AuthContext=createContext();
  const googleProvider= new GoogleAuthProvider();
 
@@ -11,6 +13,12 @@ const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null);
 
     const [loading,setLoading]=useState(true);
+
+    const [lastVisitedPath, setLastVisitedPath] = useState("/");
+
+    //const location = useLocation();
+
+   
 
     const createNewUser = (email,password)=>{
 
@@ -49,6 +57,13 @@ const AuthProvider = ({children}) => {
         throw new Error ("No authenticate user found! ");
     }
 
+    useEffect(() => {
+        if (!user) {
+            setLastVisitedPath(location.pathname); // Update path when the user is not logged in
+        }
+    }, [location, user]);
+
+
     useEffect(()=>{
 
         const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
@@ -65,6 +80,8 @@ const AuthProvider = ({children}) => {
         loading,
         setUser,
         createNewUser,
+        lastVisitedPath,
+        setLastVisitedPath,
         updateProfileUser,
         userLogin,
         logOut,

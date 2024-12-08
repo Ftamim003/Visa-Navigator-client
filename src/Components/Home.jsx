@@ -4,6 +4,9 @@ import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { Typewriter } from 'react-simple-typewriter';
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 
 const Home = () => {
     const visaData = useLoaderData();
@@ -26,16 +29,17 @@ const Home = () => {
     return (
         <>
             <Navbar></Navbar>
-            <div  className="relative  overflow-hidden min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto ">
-
             
+            <div className="relative  overflow-hidden min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto ">
+
+            <ToastContainer position="top-center" autoClose={3000} />
                 <div>
 
 
                     {/* Dark/Light Theme Toggle Button */}
                     <button
                         onClick={toggleTheme}
-                        className="fixed top-4 right-20 p-3 rounded-full bg-gray-800 text-white dark:bg-white dark:text-gray-800"
+                        className="fixed top-4 right-24 p-3 rounded-full bg-gray-800 text-white dark:bg-white dark:text-gray-800"
                     >
                         {isDarkMode ? '🌙' : '🌞'}
                     </button>
@@ -56,13 +60,13 @@ const Home = () => {
 
 
                         {/* Lottie Animation Section */}
-                        
+
                     </section>
                     <section className="slider">
                         <div className="carousel w-full">
                             <div id="slide1" className="carousel-item relative w-full">
                                 <img
-                                    src="https://i.ibb.co.com/vh8CGtQ/abcb1d54-240e-4c5b-bbb1-0e62c7ef678e.jpg"
+                                    src="https://i.ibb.co.com/JtspxGG/agus-dietrich-e-Ujufrdx-b-M-unsplash.jpg"
                                     className="w-full md:h-[400px] mx-auto rounded-md" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                     <a href="#slide4" className="btn btn-circle">❮</a>
@@ -71,7 +75,7 @@ const Home = () => {
                             </div>
                             <div id="slide2" className="carousel-item relative w-full">
                                 <img
-                                    src="https://i.ibb.co.com/GHHndtX/1580739565729.jpg"
+                                    src="https://i.ibb.co.com/6n64P4K/jeremy-kwok-FLFy0-Lytgw-unsplash.jpg"
                                     className="w-full md:h-[400px] mx-auto rounded-md" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                     <a href="#slide1" className="btn btn-circle">❮</a>
@@ -80,7 +84,7 @@ const Home = () => {
                             </div>
                             <div id="slide3" className="carousel-item relative w-full">
                                 <img
-                                    src="https://i.ibb.co.com/QJjZwBj/d6ccd21b-0fbe-49fd-b967-bcefbca40717.jpg"
+                                    src="https://i.ibb.co.com/cDqfGhG/marvin-meyer-SYTO3xs06f-U-unsplash.jpg"
                                     className="w-full md:h-[400px] mx-auto rounded-md" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                     <a href="#slide2" className="btn btn-circle">❮</a>
@@ -89,7 +93,7 @@ const Home = () => {
                             </div>
                             <div id="slide4" className="carousel-item relative w-full">
                                 <img
-                                    src="https://i.ibb.co.com/R2fQ8W2/occasionaly-japanese.jpg"
+                                    src="https://i.ibb.co.com/mcymH2H/oskars-sylwan-ik-XCRAII3-Y-unsplash.jpg"
                                     className="w-full md:h-[400px] mx-auto rounded-md" />
                                 <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                                     <a href="#slide3" className="btn btn-circle">❮</a>
@@ -101,34 +105,47 @@ const Home = () => {
 
 
 
-                    <div className="p-8 bg-gray-100 my-5 rounded-lg">
+                    <div className="p-8  my-5 rounded-lg" >
                         <h2 className="text-3xl font-bold text-center mb-6">Latest Visas</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
                             {visaData.map((visa) => (
                                 <div
-                                    key={visa._id}
-                                    className="border p-4 rounded-lg bg-white shadow-md hover:shadow-lg"
-                                >
-                                    <img
-                                        src={visa.countryImage}
-                                        alt={visa.countryName}
-                                        className="w-full h-48 object-cover rounded-lg mb-4"
-                                    />
-                                    <h3 className="text-xl font-semibold mb-2">{visa.countryName}</h3>
-                                    <p className="text-gray-600">Visa Type: {visa.visaType}</p>
-                                    <p className="text-gray-600">Processing Time: {visa.processingTime}</p>
-                                    <p className="text-gray-600">Fee: ${visa.fee}</p>
-                                    <p className="text-gray-600">Validity: {visa.validity}</p>
-                                    <p className="text-gray-600">Application Method: {visa.applicationMethod}</p>
+                                key={visa._id}
+                                className="border border-blue-300 rounded-lg bg-gradient-to-r from-blue-50 to-orange-100 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-5"
+                            >
+                                <img
+                                    src={visa.countryImage}
+                                    alt={visa.countryName}
+                                    className="w-full h-48 object-cover rounded-t-lg mb-4 border-b border-blue-200"
+                                />
+                                <div className="px-3">
+                                    <h3 className="text-blue-600 font-extrabold text-2xl mb-3">
+                                        {visa.countryName}
+                                    </h3>
+                                    <p className="text-gray-700 text-sm mb-2">
+                                        <span className="font-semibold">Visa Type:</span> {visa.visaType}
+                                    </p>
+                                    <p className="text-gray-700 text-sm mb-2">
+                                        <span className="font-semibold">Processing Time:</span> {visa.processingTime}
+                                    </p>
+                                    <p className="text-gray-700 text-sm mb-2">
+                                        <span className="font-semibold">Fee:</span> ${visa.fee}
+                                    </p>
+                                    <p className="text-gray-700 text-sm mb-2">
+                                        <span className="font-semibold">Validity:</span> {visa.validity}
+                                    </p>
+                                    <p className="text-gray-700 text-sm mb-4">
+                                        <span className="font-semibold">Application Method:</span> {visa.applicationMethod}
+                                    </p>
                                     <Link to={`/visaDetails/${visa._id}`}>
                                         <button
-
-                                            className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                                            className="w-full bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-orange-500 hover:to-orange-600 transition-all duration-300"
                                         >
                                             See Details
                                         </button>
                                     </Link>
                                 </div>
+                            </div>
                             ))}
                         </div>
                         <div className="text-center mt-8">
@@ -152,7 +169,7 @@ const Home = () => {
 
                 {/* section1 */}
 
-                <div className="p-8 bg-blue-100 w-11/12 mx-auto my-5 rounded-lg">
+                <div className="p-8 w-11/12 mx-auto my-5 rounded-lg">
                     <h2 className="text-3xl font-bold text-center mb-6">Top Visa Destinations</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div className="relative rounded-lg overflow-hidden shadow-lg">
@@ -193,7 +210,7 @@ const Home = () => {
 
                 {/* section2 */}
 
-                <div className="p-8 bg-gray-100 w-11/12 mx-auto my-5 rounded-lg">
+                <div className="p-8  w-11/12 mx-auto my-5 rounded-lg">
                     <h2 className="text-3xl font-bold text-center mb-6">What Our Users Say</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="p-4 bg-white rounded-lg shadow-md">

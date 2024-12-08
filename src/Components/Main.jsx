@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from './Footer/Footer';
 const Main = () => {
     return (
-        <div>
+        <div className=''>
            
             <div >
 

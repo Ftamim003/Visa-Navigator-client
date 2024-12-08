@@ -6,6 +6,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Loading from "../Components/Loading";
 
 
+
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation(); 
@@ -14,11 +15,11 @@ const PrivateRoute = ({ children }) => {
     return <Loading></Loading>
   }
 
-  if (user && user?.email) {
+  if (user?.email) {
     return children;
   }
 
-  return <Navigate to="/auth/login" state={location.pathname } replace />;
+  return <Navigate to="/auth/login" state={{ from: location.pathname }} replace />;
 };
 
 export default PrivateRoute;

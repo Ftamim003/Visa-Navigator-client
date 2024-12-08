@@ -39,7 +39,7 @@ const Home = () => {
                     {/* Dark/Light Theme Toggle Button */}
                     <button
                         onClick={toggleTheme}
-                        className="fixed top-4 right-24 p-3 rounded-full bg-gray-800 text-white dark:bg-white dark:text-gray-800"
+                        className="absolute top-2 right-1 p-2 rounded-full bg-gray-800 text-white dark:bg-white dark:text-gray-800"
                     >
                         {isDarkMode ? '🌙' : '🌞'}
                     </button>

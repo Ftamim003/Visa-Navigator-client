@@ -6,15 +6,18 @@ const Footer = () => {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Website Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Visa Navigator</h3>
+            <h3 className="text-xl font-bold mb-4">Skyline Visas
+            </h3>
             <p>Your trusted platform for managing visa applications and tracking progress seamlessly.</p>
-            <p className="mt-2 text-sm">© {new Date().getFullYear()} Visa Navigator. All rights reserved.</p>
+            <p className="mt-2 text-sm">© {new Date().getFullYear()} Skyline Visas
+            . All rights reserved.</p>
           </div>
   
           {/* Contact Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <p>Email: support@visanavigator.com</p>
+            <p>Email: support@Skyline Visas
+            .com</p>
             <p>Phone: +1 (800) 123-4567</p>
             <p>Address: 123 Main Street, Cityville, Country</p>
           </div>

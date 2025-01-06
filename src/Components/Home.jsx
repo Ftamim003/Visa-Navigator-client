@@ -3,12 +3,40 @@ import Footer from "./Footer/Footer";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { Typewriter } from 'react-simple-typewriter';
+import CountUp from "react-countup";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-
+import { FaCheckCircle, FaHandshake, FaShieldAlt } from "react-icons/fa";
 const Home = () => {
+
+
+    const trustIndicators = [
+        {
+          id: 1,
+          title: "Successful Visa Applications",
+          count: 10000,
+          duration: 3.5,
+          icon: <FaCheckCircle className="text-blue-600 text-5xl mb-4" />,
+        },
+        {
+          id: 2,
+          title: "Trusted Embassy Partnerships",
+          count: 50,
+          duration: 3.5,
+          icon: <FaHandshake className="text-orange-500 text-5xl mb-4" />,
+        },
+        {
+          id: 3,
+          title: "Data Security Compliance",
+          count: 100,
+          duration: 3.5,
+          icon: <FaShieldAlt className="text-green-600 text-5xl mb-4" />,
+        },
+      ];
+
+
     const visaData = useLoaderData();
     const navigate = useNavigate();
 
@@ -17,6 +45,7 @@ const Home = () => {
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);
     };
+
 
     useEffect(() => {
         if (isDarkMode) {
@@ -29,21 +58,21 @@ const Home = () => {
     return (
         <>
             <Navbar></Navbar>
-            
-            <div className="relative  overflow-hidden min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto ">
 
-            <ToastContainer position="top-center" autoClose={3000} />
+            <div className="relative  overflow-hidden min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] pt-16 w-11/12 mx-auto ">
+
+                <ToastContainer position="top-center" autoClose={3000} />
                 <div>
 
 
                     {/* Dark/Light Theme Toggle Button */}
                     <button
                         onClick={toggleTheme}
-                        className="absolute top-2 right-1 p-2 rounded-full bg-gray-800 text-white dark:bg-white dark:text-gray-800"
+                        className="absolute top-24 right-1 p-2 rounded-full bg-gray-800 text-white dark:bg-white dark:text-gray-800"
                     >
                         {isDarkMode ? '🌙' : '🌞'}
                     </button>
-                    <section className="text-center mt-10">
+                    <section className="text-center mt-12">
                         <h2 className="text-3xl font-bold mb-4">
                             <Typewriter
                                 words={['Welcome to Visa Navigator!', 'Apply for your visa easily.', 'Track your visa status in one click.']}
@@ -110,48 +139,48 @@ const Home = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
                             {visaData.map((visa) => (
                                 <div
-                                key={visa._id}
-                                className="border border-blue-300 rounded-lg bg-gradient-to-r from-blue-50 to-orange-100 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-5"
-                            >
-                                <img
-                                    src={visa.countryImage}
-                                    alt={visa.countryName}
-                                    className="w-full h-48 object-cover rounded-t-lg mb-4 border-b border-blue-200"
-                                />
-                                <div className="px-3">
-                                    <h3 className="text-blue-600 font-extrabold text-2xl mb-3">
-                                        {visa.countryName}
-                                    </h3>
-                                    <p className="text-gray-700 text-sm mb-2">
-                                        <span className="font-semibold">Visa Type:</span> {visa.visaType}
-                                    </p>
-                                    <p className="text-gray-700 text-sm mb-2">
+                                    key={visa._id}
+                                    className="border border-blue-300 rounded-lg bg-gradient-to-r from-blue-50 to-orange-100 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-5"
+                                >
+                                    <img
+                                        src={visa.countryImage}
+                                        alt={visa.countryName}
+                                        className="w-full h-48 object-cover rounded-t-lg mb-4 border-b border-blue-200"
+                                    />
+                                    <div className="px-3">
+                                        <h3 className="text-blue-600 font-extrabold text-3xl mb-3">
+                                            {visa.countryName}
+                                        </h3>
+                                        <p className="text-gray-700 text-lg font-bold mb-2">
+                                            <span className="font-semibold"></span> {visa.visaType}
+                                        </p>
+                                        {/* <p className="text-gray-700 text-lg mb-2">
                                         <span className="font-semibold">Processing Time:</span> {visa.processingTime}
-                                    </p>
-                                    <p className="text-gray-700 text-sm mb-2">
-                                        <span className="font-semibold">Fee:</span> ${visa.fee}
-                                    </p>
-                                    <p className="text-gray-700 text-sm mb-2">
+                                    </p> */}
+                                        <p className="text-gray-700 text-lg mb-2">
+                                            <span className="font-semibold">Fee:</span> ${visa.fee}
+                                        </p>
+                                        {/* <p className="text-gray-700 text-sm mb-2">
                                         <span className="font-semibold">Validity:</span> {visa.validity}
-                                    </p>
-                                    <p className="text-gray-700 text-sm mb-4">
+                                    </p> */}
+                                        {/* <p className="text-gray-700 text-sm mb-4">
                                         <span className="font-semibold">Application Method:</span> {visa.applicationMethod}
-                                    </p>
-                                    <Link to={`/visaDetails/${visa._id}`}>
-                                        <button
-                                            className="w-full bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-orange-500 hover:to-orange-600 transition-all duration-300"
-                                        >
-                                            See Details
-                                        </button>
-                                    </Link>
+                                    </p> */}
+                                        <Link to={`/visaDetails/${visa._id}`}>
+                                            <button
+                                                className="w-full bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 px-4 rounded-lg font-semibold hover:from-orange-500 hover:to-orange-600 transition-all duration-300"
+                                            >
+                                                See Details
+                                            </button>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
                             ))}
                         </div>
                         <div className="text-center mt-8">
                             <button
                                 onClick={() => navigate("/allVisa")}
-                                className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
+                                className="bg-gradient-to-r from-blue-600 to-blue-700  text-white py-2 px-6 rounded-lg "
                             >
                                 See All Visas
                             </button>
@@ -169,7 +198,7 @@ const Home = () => {
 
                 {/* section1 */}
 
-                <div className="p-8 w-11/12 mx-auto my-5 rounded-lg">
+                <div className="p-8  mx-auto my-5 rounded-lg">
                     <h2 className="text-3xl font-bold text-center mb-6">Top Visa Destinations</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div className="relative rounded-lg overflow-hidden shadow-lg">
@@ -210,7 +239,33 @@ const Home = () => {
 
                 {/* section2 */}
 
-                <div className="p-8  w-11/12 mx-auto my-5 rounded-lg">
+
+
+                <section className="p-8  mx-auto my-5 rounded-lg">
+                    <div className="container mx-auto">
+                        <h2 className="text-3xl font-bold text-center mb-8">Why Choose Us?</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {/* Trust Indicators */}
+                            {trustIndicators.map((indicator) => (
+                                <div
+                                    key={indicator.id}
+                                    className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md"
+                                >
+                                    {indicator.icon}
+                                    <h3 className="text-2xl font-bold text-blue-700 mt-4">
+                                        <CountUp end={indicator.count} duration={indicator.duration} />+
+                                    </h3>
+                                    <p className="text-gray-600 mt-2">{indicator.title}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <div className="p-8  mx-auto my-5 rounded-lg">
                     <h2 className="text-3xl font-bold text-center mb-6">What Our Users Say</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="p-4 bg-white rounded-lg shadow-md">
@@ -263,6 +318,11 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+
+
+              
+
+
 
             </div>
         </>

@@ -29,7 +29,7 @@ const AllVisas = () => {
     return (
        <>
        <Navbar></Navbar>
-       <div className=" bg-gradient-to-r from-blue-100 to-orange-100">
+       <div className="pt-20 bg-gradient-to-r from-blue-100 to-orange-100">
        <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
             <div className="">
             <div className="p-8 ">
@@ -58,12 +58,12 @@ const AllVisas = () => {
                                 alt={visa.countryName}
                                 className="w-full h-48 object-cover rounded-lg mb-4"
                             />
-                            <h3 className="text-xl font-semibold mb-2">{visa.countryName}</h3>
-                            <p className="text-gray-600">Visa Type: {visa.visaType}</p>
-                            <p className="text-gray-600">Processing Time: {visa.processingTime}</p>
+                            <h3 className="text-3xl font-semibold mb-2">{visa.countryName}</h3>
+                            <p className="text-gray-600 text-lg font-bold"> {visa.visaType}</p>
+                            {/* <p className="text-gray-600">Processing Time: {visa.processingTime}</p> */}
                             <p className="text-gray-600">Fee: ${visa.fee}</p>
-                            <p className="text-gray-600">Validity: {visa.validity}</p>
-                            <p className="text-gray-600">Application Method: {visa.applicationMethod}</p>
+                            {/* <p className="text-gray-600">Validity: {visa.validity}</p> */}
+                            {/* <p className="text-gray-600">Application Method: {visa.applicationMethod}</p> */}
                             <Link to={`/visaDetails/${visa._id}`}>
                             <button
                                 

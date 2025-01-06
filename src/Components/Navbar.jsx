@@ -18,8 +18,8 @@ const Navbar = () => {
         }
     };
     return (
-        <div >
-            <div className="bg-gradient-to-r from-blue-100 to-orange-100">
+        <div className="fixed w-full z-10">
+            <div className="bg-gradient-to-r from-blue-100 to-orange-100 ">
                 <nav className="flex items-center">
                     <div className="navbar ">
                         <div className="navbar-start">
@@ -62,7 +62,7 @@ const Navbar = () => {
                             </div>
                             <div className="flex items-center w-72">
 
-                                <h1 className="font-bold text-2xl text-orange-600 hidden md:block"><NavLink to='/'>
+                                <h1 className="ml-4 font-bold text-2xl text-orange-600 hidden md:block"><NavLink to='/'>
                                 Skyline Visas  </NavLink> </h1>
                                 <div className="text-center mt-5 ">
 
@@ -102,24 +102,24 @@ const Navbar = () => {
                                 }
                             </ul>
                         </div>
-                        <div className="navbar-end flex gap-7">
+                        <div className="navbar-end flex gap-1 mr-4">
                             {!user ? (
                                 <>
                                     <Link
                                         to="/auth/login"
-                                        className="btn btn-primary hover:bg-green-600 transition-colors duration-300 mr-6"
+                                        className="btn bg-blue-500 hover:bg-blue-600 transition-colors duration-300 mr-6"
                                     >
                                         Login
                                     </Link>
                                     <Link
                                         to="/auth/register"
-                                        className="btn bg-orange-400 hover:bg-blue-500 transition-colors duration-300"
+                                        className="btn bg-orange-400 hover:bg-orange-600 transition-colors duration-300"
                                     >
                                         Register
                                     </Link>
                                 </>
                             ) : (
-                                <div className="dropdown dropdown-end">
+                                <div className="mr-4 dropdown dropdown-end">
                                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                         <div className="w-10 rounded-full">
                                             <img src={user.photoURL} alt="User Avatar" />

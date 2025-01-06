@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate,  } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Navbar from "../Navbar";
 
 const Login = () => {
 
@@ -36,13 +37,15 @@ const Login = () => {
     const handleGoogleSignIn=()=>{
         googleSignIn()
         .then(()=>{
-            const redirectPath =  location.state ||  "/";
+            const redirectPath =  location.state?.from ||  "/";
                 navigate(redirectPath);
         })
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-100 to-orange-100 flex justify-center items-center p-4">
+       <div>
+        <Navbar></Navbar>
+         <div className="min-h-screen bg-gradient-to-r from-blue-100 to-orange-100 flex justify-center items-center p-4">
             <div className="card bg-white shadow-lg rounded-lg w-full max-w-lg p-8">
                 <h2 className="text-center text-3xl font-bold text-blue-600 mb-6">
                     Login to Your Account
@@ -106,6 +109,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
+       </div>
     );
 };
 

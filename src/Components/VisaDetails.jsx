@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import Navbar from "./Navbar";
+import Footer from "./Footer/Footer";
 
 const VisaDetails = () => {
     const singleVisaCard = useLoaderData();
@@ -75,28 +76,64 @@ const VisaDetails = () => {
 
     return (
         <>
-              <Navbar></Navbar>
-            <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
-                <h2 className="text-3xl font-bold mb-4">{singleVisaCard.countryName} - Visa Details</h2>
-                <img
-                    src={singleVisaCard.countryImage}
-                    alt={singleVisaCard.countryName}
-                    className="w-full h-64 object-cover rounded-md mb-4"
-                />
-                <p><strong>Visa Type:</strong> {singleVisaCard.visaType}</p>
-                <p><strong>Processing Time:</strong> {singleVisaCard.processingTime}</p>
-                <p><strong>Fee:</strong> ${singleVisaCard.fee}</p>
-                <p><strong>Validity:</strong> {singleVisaCard.validity}</p>
-                <p><strong>Application Method:</strong> {singleVisaCard.applicationMethod}</p>
-                <p><strong>Description:</strong> {singleVisaCard.description}</p>
+            <Navbar></Navbar>
+            <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-full mx-auto bg-gradient-to-r from-blue-100 to-orange-100 p-8 shadow-lg">
+                {/* Title */}
+                <h2 className="text-4xl font-bold text-blue-700 mb-6 text-center">
+                    {singleVisaCard.countryName} - Visa Details
+                </h2>
 
-                <button
-                    onClick={() => setShowModal(true)}
-                    className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-                >
-                    Apply for the Visa
-                </button>
+                {/* Country Image */}
+                <div className="w-11/12 mx-auto p-6 bg-gradient-to-r from-blue-100 to-orange-100 rounded-lg shadow-lg">
+                    {/* Image Section */}
+                    <div className="flex flex-col items-center">
+                        <img
+                            src={singleVisaCard.countryImage}
+                            alt={singleVisaCard.countryName}
+                            className="w-full md:w-3/5 h-64 object-cover rounded-lg shadow-md mb-6"
+                        />
+                    </div>
 
+                    {/* Visa Details Section */}
+                    <div className="mx-auto w-full md:w-3/5">
+                        <div className="grid md:grid-cols-2 gap-y-4 text-lg">
+                            <p>
+                                <strong className="text-blue-800">Visa Type:</strong> {singleVisaCard.visaType}
+                            </p>
+                            <p>
+                                <strong className="text-blue-800">Processing Time:</strong> {singleVisaCard.processingTime}
+                            </p>
+                            <p>
+                                <strong className="text-blue-800">Fee:</strong> ${singleVisaCard.fee}
+                            </p>
+                            <p>
+                                <strong className="text-blue-800">Validity:</strong> {singleVisaCard.validity}
+                            </p>
+                            <p>
+                                <strong className="text-blue-800">Application Method:</strong> {singleVisaCard.applicationMethod}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="mt-5 mx-auto w-full md:w-3/5">
+                    <h3 className="text-2xl font-semibold text-blue-900 ">Description:</h3>
+                    <p className="text-gray-700 py-1">
+                        {singleVisaCard.description}
+                    </p>
+                </div>
+
+                </div>
+
+                
+
+                {/* Apply Button */}
+                <div className="flex justify-center mt-8">
+                    <button
+                        onClick={() => setShowModal(true)}
+                        className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-8 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300"
+                    >
+                        Apply for the Visa
+                    </button>
+                </div>
                 {/* Modal */}
                 {showModal && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -165,7 +202,7 @@ const VisaDetails = () => {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+                                        className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-4 rounded-lg "
                                     >
                                         Apply
                                     </button>
@@ -176,7 +213,7 @@ const VisaDetails = () => {
                 )}
             </div>
 
-
+            <Footer></Footer>
         </>
     );
 };

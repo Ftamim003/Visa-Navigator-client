@@ -36,7 +36,7 @@ const MyApplications = () => {
                 setApplications([]);
             }
         };
-    
+
         fetchData();
     }, [search, user.email]);
 
@@ -74,72 +74,82 @@ const MyApplications = () => {
     return (
         <>
             <Navbar />
-           <div className="bg-gradient-to-r from-blue-100 to-orange-100 ">
-           <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
-                <h2 className="text-3xl font-bold mb-6">My Visa Applications</h2>
+            <div className="bg-gradient-to-r from-blue-100 to-orange-100 pt-24">
+                <div className="min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto">
+                    <h2 className="text-3xl font-bold mt-1 mb-6">My Visa Applications</h2>
 
-                {/* Search Input Field */}
-                <div className="mb-6">
-                    <input
-                        type="text"
-                        placeholder="Search by country name"
-                        className="border p-2 rounded-lg w-full md:w-1/2"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
-
-                {Array.isArray(applications) && applications.length === 0 ? (
-                    <p>No visa applications found.</p>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-3">
-                        {applications.map((app) => (
-                            <div
-                                key={app._id}
-                                className="border p-4 rounded-lg shadow-md bg-white"
-                            >
-                                <img
-                                    src={app.countryImage}
-                                    alt={app.countryName}
-                                    className="w-full h-40 object-cover rounded-md mb-4"
-                                />
-                                <h3 className="text-xl font-semibold mb-2">{app.countryName}</h3>
-                                <p>
-                                    <strong>Visa Type:</strong> {app.visaType}
-                                </p>
-                                <p>
-                                    <strong>Processing Time:</strong> {app.processingTime}
-                                </p>
-                                <p>
-                                    <strong>Fee:</strong> ${app.fee}
-                                </p>
-                                <p>
-                                    <strong>Validity:</strong> {app.validity}
-                                </p>
-                                <p>
-                                    <strong>Application Method:</strong> {app.applicationMethod}
-                                </p>
-                                <p>
-                                    <strong>Applied Date:</strong> {app.appliedDate}
-                                </p>
-                                <p>
-                                    <strong>Applicant:</strong> {app.firstName} {app.lastName}
-                                </p>
-                                <p>
-                                    <strong>Email:</strong> {app.email}
-                                </p>
-                                <button
-                                    onClick={() => handleCancel(app._id)}
-                                    className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 w-full"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        ))}
+                    {/* Search Input Field */}
+                    <div className="mb-6">
+                        <input
+                            type="text"
+                            placeholder="Search by country name"
+                            className="border p-2 rounded-lg w-full md:w-1/2"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                     </div>
-                )}
+
+                    {Array.isArray(applications) && applications.length === 0 ? (
+                        <p>No visa applications found.</p>
+                    ) : (
+                        <div className="overflow-x-auto">
+                            <table className="table w-full">
+                                {/* Table Header */}
+                                <thead>
+                                    <tr className="bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+                                        <th>#</th>
+                                        <th>Country</th>
+                                        <th>Visa Type</th>
+                                        <th>Processing Time</th>
+                                        <th>Fee</th>
+                                        <th>Validity</th>
+                                        <th>Application Method</th>
+                                        <th>Applied Date</th>
+                                        <th>Applicant</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                {/* Table Body */}
+                                <tbody>
+                                    {applications.map((app, index) => (
+                                        <tr key={app._id} className="hover">
+                                            <td>{index + 1}</td>
+                                            <td className="flex flex-col items-center gap-2">
+                                                <img
+                                                    src={app.countryImage}
+                                                    alt={app.countryName}
+                                                    className="w-10 h-10 rounded-full object-cover"
+                                                />
+                                                {app.countryName}
+                                            </td>
+                                            <td>{app.visaType}</td>
+                                            <td>{app.processingTime}</td>
+                                            <td>${app.fee}</td>
+                                            <td>{app.validity}</td>
+                                            <td>{app.applicationMethod}</td>
+                                            <td>{app.appliedDate}</td>
+                                            <td>
+                                                {app.firstName} {app.lastName}
+                                            </td>
+                                            <td>{app.email}</td>
+                                            <td>
+                                                <button
+                                                    onClick={() => handleCancel(app._id)}
+                                                    className="btn btn-sm btn-error text-white"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
             </div>
-           </div>
             <Footer />
         </>
     );

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 
 
 const Register = () => {
@@ -62,8 +63,11 @@ const Register = () => {
     })
    }
 
+   
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-100 to-orange-100 flex justify-center items-center p-4">
+        <div>
+            <Navbar></Navbar>
+            <div className="min-h-screen bg-gradient-to-r from-blue-100 to-orange-100 flex justify-center items-center p-4">
         <div className="card bg-white shadow-lg rounded-lg w-full max-w-lg p-8">
             <h2 className="text-center text-3xl font-bold text-blue-600 mb-6">
                 Register Your Account
@@ -145,6 +149,7 @@ const Register = () => {
             </div>
         </div>
     </div>
+        </div>
 );
     
 };

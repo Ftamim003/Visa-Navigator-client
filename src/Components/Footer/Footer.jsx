@@ -1,13 +1,21 @@
+import Lottie from "lottie-react";
+import animationData from "../../Animation - 1733596939443.json";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-800 text-white py-8">
+        <footer className="bg-gray-700 text-white pl-2 py-7">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Website Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Skyline Visas
+            <div className="flex items-center">
+            <h3 className="text-xl font-bold mb-4 mr-1">Skyline Visas
             </h3>
+            <div className="text-center ">
+
+               <Lottie animationData={animationData} loop={true} className=" w-12" />
+             </div>
+            </div>
             <p>Your trusted platform for managing visa applications and tracking progress seamlessly.</p>
             <p className="mt-2 text-sm">© {new Date().getFullYear()} Skyline Visas
             . All rights reserved.</p>
@@ -16,10 +24,10 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <p>Email: support@Skyline Visas
-            .com</p>
-            <p>Phone: +1 (800) 123-4567</p>
-            <p>Address: 123 Main Street, Cityville, Country</p>
+            <p>Email: fazlullahtamim003@gmail.com
+            </p>
+            <p>Phone: 01791430459</p>
+            <p>Address: Azimpur, Dhaka, Bangladesh</p>
           </div>
   
           {/* Social Media Links */}

@@ -81,9 +81,9 @@ const AddVisa = () => {
     <>
       <div className="bg-gradient-to-r from-blue-100 to-orange-100 ">
       <div><Navbar></Navbar></div>
-    <div className="bg-[#F4F3F0] p-10 min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)] w-11/12 mx-auto rounded-md">
+    <div className="bg-[#F4F3F0] p-10 min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-230px)]  pt-28 w-11/12 mx-auto rounded-md">
       
-      <h2 className="text-3xl font-bold mb-5">Add Visa</h2>
+      <h2 className="text-3xl font-bold mb-7">Add Visa</h2>
 
       <form onSubmit={handleAddVisa}>
         {/* Country Image */}

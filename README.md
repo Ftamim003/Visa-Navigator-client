@@ -47,3 +47,5 @@ Follow these steps to set up and run the project:
 1. **Clone the repository**  
    ```sh
    git clone <repository_url>
+   cd skyline-visas
+

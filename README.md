@@ -54,10 +54,11 @@ Follow these steps to set up and run the project:
 
    npm install
 
+    code .
 
    npm run dev
 
-   code .
+  
 
 
 

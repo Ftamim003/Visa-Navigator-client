@@ -47,13 +47,17 @@ Follow these steps to set up and run the project:
 1. **Clone the repository**  
    ```sh
    git clone <repository_url>
-   ```sh
+
+   
    cd skyline-visas
-   ```sh
+
+
    npm install
- ```sh
+
+
    npm run dev
- ```sh
+
+   
 code .
 
 
